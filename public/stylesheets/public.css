@@ -1,0 +1,109 @@
+/* Site Colors:
+#030027 royal blue
+#EC7357 apricot
+#AC5440 dark apricot
+#F4F7BE cream
+#A675A1 lavender
+#151514 dark gray
+
+*/
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	font-family: Arial;
+	line-height: 1.5em;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	overflow-y: hidden;
+	color: #151514;
+	font-size: 13px;
+}
+
+li a {
+	color: #151514 ;
+	text-decoration: none;
+}
+
+li a:hover {
+	color: blue ;
+	text-decoration: none;
+}
+
+#header {
+	height: 20%;
+	margin: 0;
+	padding: 0;
+	color: #F4F7BE;
+	font-family:"Acme", sans-serif;
+	background: #030027;
+	
+}
+
+#header h1 {
+	padding: .9em 0 0 .5em; 
+	margin: 0;
+	font-size: 4.75em;
+	text-align: left;
+	float: left;
+}
+
+
+#main {
+	height: 75%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background: #F4F7BE;
+	
+}
+
+#footer {
+	float:right;
+	width: 100%;
+	height: 20%;
+	text-align: center;
+	margin: 0;
+	padding: .45em;
+	background: #030027;
+	color: #F4F7BE ;
+}
+
+/* Navigation */
+#navigation {
+	float: left;
+	width: 15%;
+	height: 100%;
+	background: #EC7357;
+	margin: 0;
+}
+
+
+.selected {
+	font-weight: bolder;
+}
+
+/* Page Content */
+#page {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	float: left;
+	background: #F4F7BE;	
+}
+
+#page h2{
+	margin: 2em 0 0 2em;
+	padding: 0;
+	font-size: 1.25em;
+	font-weight: bolder;
+	
+	
+}
+
