@@ -3,32 +3,23 @@
 <?php include("../includes/database_connection.php") ?>
 
 <?php
-if (isset($_GET["subject"])) {
-	$selected_subject_id = $_GET["subject"];
-	$selected_page_id = null;
-} elseif (isset($_GET["page"])) {
-		$selected_page_id = $_GET["page"];
-		$selected_subject_id = null;
-	} else {
-		$selected_subject_id = null;
-		$selected_page_id = null;
-	}
+find_selected_page();
 ?>
 
 <div id="main">	
 	<div id= "navigation">
-	<?php //include("../includes/navigation.php") ?>
-	<?php echo navigation ($selected_subject_id, $selected_page_id); ?>
+	<?php echo navigation($current_subject, $current_page); ?>
+	<a href="new_subject.php">+ Add a subject</a>
 	</div>
 	
 	<div id="page">
 		
-		<?php if ($selected_subject_id) { ?>
-					<h2>Manage Subject: <h2>
-					<?php $current_subject = find_subject_by_id($selected_subject_id); ?>
-		<?php } elseif ($selected_page_id) { ?>
-					<h2>Manage Page: <h2>
-					<?php $current_page = find_page_by_id($selected_page_id); ?>
+		<?php if ($current_subject) { ?>
+					<h2>Manage Subject</h2>
+					Subject: <?php echo $current_subject["menu_name"]; ?>
+		<?php } elseif ($current_page) { ?>
+					<h2>Manage Page</h2>
+					Page: <?php echo $current_page["menu_name"]; ?>
 			<?php } else {; ?>
 					<p>Please select a subject or a page.</p>
 				<?php } ?>

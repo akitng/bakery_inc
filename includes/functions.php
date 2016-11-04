@@ -1,9 +1,31 @@
 <?php
+	function redirect_to($new_location){
+		header("Location: " . $new_location);
+		exit;
+	}
+
+
 	//Testing for db connectivity
 	function confirm_query($result_set) {
 		if (!$result_set) {
 			die("Database query failed.");
 		}
+	}
+
+
+	function find_selected_page() {
+		global $current_subject;
+		global $current_page;
+		if (isset($_GET["subject"])) {
+		$current_subject = find_subject_by_id($_GET["subject"]);
+		$current_page = null;
+			} elseif (isset($_GET["page"])) {
+				$current_page = find_page_by_id($_GET["page"]);
+				$current_subject = null;
+				} else {
+					$current_subject = null;
+					$current_page = null;
+				}
 	}
 
 	//Querying db for subjects
@@ -40,7 +62,7 @@
 		$subject_set = mysqli_query($connection, $query);
 		confirm_query($subject_set);
 		if ($subject = mysqli_fetch_assoc($subject_set)) {
-			echo $subject["menu_name"];
+			return $subject;
 		} else {
 			return null;
 		}
@@ -55,7 +77,7 @@
 		$page_set = mysqli_query($connection, $query);
 		confirm_query($page_set);
 		if ($page = mysqli_fetch_assoc($page_set)) {
-			echo $page["menu_name"];
+			return $page;
 		} else {
 			return null;
 		}
@@ -64,12 +86,12 @@
 
 
 
-	function navigation($subject_id, $page_id) {
+	function navigation($subject_array, $page_array) {
 		$output = "<ul class= \"subjects\">";
 		$subject_set = find_all_subjects(); 
 		while ($subject = mysqli_fetch_assoc($subject_set)){
 			$output .= "<li ";
-			if ($subject["id"] == $subject_id) {
+			if ($subject_array && $subject["id"] == $subject_array["id"]) {
 				$output .= "class =\"selected\"";
 			} 
 			$output .= ">";	
@@ -83,7 +105,7 @@
 			$output .= "<ul class=\"pages\">";					
 			while ($page = mysqli_fetch_assoc($page_set)) {
 				$output .= "<li ";
-				if ($page["id"] == $page_id) {
+				if ($page_array && $page["id"] == $page_array["id"]) {
 				$output .= "class =\"selected\"";
 				} 
 				$output .= ">";	
